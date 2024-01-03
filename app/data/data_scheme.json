@@ -1,0 +1,47 @@
+{
+  "tournament": [
+    {
+      "title": "X CUP",
+      "player": [
+        {"id": 1, "name": "1p", "score": 2},
+        {"id": 2, "name": "2p", "score": 3},
+        {"id": 3, "name": "3p", "score": 2},
+        {"id": 4, "name": "4p", "score": 4},
+        {"id": 5, "name": "5p", "score": 7}
+      ],
+			"games":[
+				{
+					"1":[
+						{"id":1, "score":1},
+						{"id":2, "score":1},
+						{"id":3, "score":1},
+						{"id":4, "score":1},
+						{"id":5, "score":1}
+					]
+				}
+			]
+    }
+  ]
+}
+
+{
+      "player": [
+        {"id": 1, "name": "1p", "score": 2},
+        {"id": 2, "name": "2p", "score": 3},
+        {"id": 3, "name": "3p", "score": 2},
+        {"id": 4, "name": "4p", "score": 4},
+        {"id": 5, "name": "5p", "score": 7}
+      ],
+			"games":[
+				{
+					"1":[
+						{"id":1,"name":"1p", "score":1},
+						{"id":2,"name":"2p", "score":1},
+						{"id":3,"name":"3p", "score":1},
+						{"id":4,"name":"4p", "score":1},
+						{"id":5,"name":"5p", "score":1},
+					]
+				}
+			]
+}
+
