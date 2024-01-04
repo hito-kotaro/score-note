@@ -9,8 +9,8 @@ import { useAddPointDialog } from "../organizations/AddPointDialog/useAddPointDi
 
 interface Props {
   player: Player;
-  addScore: (id: number, add: number) => void;
-  substructScore: (id: number, sub: number) => void;
+  addScore: (id: string, add: number) => void;
+  substructScore: (id: string, sub: number) => void;
 }
 
 export const PlayerListItem: FC<Props> = (props) => {
@@ -22,7 +22,7 @@ export const PlayerListItem: FC<Props> = (props) => {
     onOpenDialog,
     onCloseDialog,
     onChange,
-		clear
+    clear,
   } = useAddPointDialog();
 
   return (
@@ -35,7 +35,7 @@ export const PlayerListItem: FC<Props> = (props) => {
         onCloseDialog={onCloseDialog}
         addScore={addScore}
         onChange={onChange}
-				clear={clear}
+        clear={clear}
       />
       <Box className="w-36 text-primary text-2xl flex items-center">
         {player.name}

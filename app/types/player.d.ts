@@ -1,6 +1,6 @@
 export interface Player {
-	id:number,
-	name: string,
+  id: string;
+  name: string;
   score: number;
   total: number;
 }

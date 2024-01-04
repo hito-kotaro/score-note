@@ -7,39 +7,59 @@ import HomePageContents from "./components/HomePageContents";
 import GamePageComponents from "./components/GamePageContents";
 import { useContentId } from "./components/hooks/useContentId";
 import { usePlayer } from "./components/hooks/usePlayer";
+import { ThemeProvider } from "@mui/material/styles";
+import { theme } from "./theme";
 
 const Page = () => {
   const { contentId, changeContentId } = useContentId();
-  const { playerList, changePlayerList, addScore , substructScore} = usePlayer();
+  const {
+    playerList,
+    playerName,
+    onChangePlayerName,
+    addPlayer,
+    removePlayer,
+    addScore,
+    substructScore,
+  } = usePlayer();
 
   return (
-    <Box>
+    <ThemeProvider theme={theme}>
       <Box>
-        {contentId === 0 ? (
-          <HomePageContents
-            changeContentId={changeContentId}
-            changePlayerList={changePlayerList}
-          />
-        ) : (
-          ""
-        )}
-        {contentId === 1 ? (
-          <GamePageComponents playerList={playerList} addScore={addScore}  substructScore={substructScore}/>
-        ) : (
-          ""
-        )}
-        {contentId === 2 ? <ScorePageContents /> : ""}
-        {contentId === 3 ? <ResultPageContents /> : ""}
-        {contentId !== 0 &&
-        contentId !== 1 &&
-        contentId !== 2 &&
-        contentId !== 3 ? (
-          <NotFoundPageContents />
-        ) : (
-          ""
-        )}
+        <Box>
+          {contentId === 0 ? (
+            <HomePageContents
+              changeContentId={changeContentId}
+              playerList={playerList}
+              playerName={playerName}
+              onChangePlayerName={onChangePlayerName}
+              addPlayer={addPlayer}
+              removePlayer={removePlayer}
+            />
+          ) : (
+            ""
+          )}
+          {contentId === 1 ? (
+            <GamePageComponents
+              playerList={playerList}
+              addScore={addScore}
+              substructScore={substructScore}
+            />
+          ) : (
+            ""
+          )}
+          {contentId === 2 ? <ScorePageContents /> : ""}
+          {contentId === 3 ? <ResultPageContents /> : ""}
+          {contentId !== 0 &&
+          contentId !== 1 &&
+          contentId !== 2 &&
+          contentId !== 3 ? (
+            <NotFoundPageContents />
+          ) : (
+            ""
+          )}
+        </Box>
       </Box>
-    </Box>
+    </ThemeProvider>
   );
 };
 

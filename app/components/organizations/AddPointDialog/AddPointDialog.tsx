@@ -16,7 +16,7 @@ interface Props {
   input: string;
   isInvalidValue: boolean;
   onCloseDialog: () => void;
-  addScore: (id: number, add: number) => void;
+  addScore: (id: string, add: number) => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   clear: () => void;
 }

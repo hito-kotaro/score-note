@@ -8,8 +8,8 @@ import { AddPointDialog } from "./organizations/AddPointDialog/AddPointDialog";
 
 interface Props {
   playerList: Player[];
-  addScore: (id: number, add: number) => void;
-  substructScore: (id: number, sub: number) => void;
+  addScore: (id: string, add: number) => void;
+  substructScore: (id: string, sub: number) => void;
 }
 const GamePageComponents: FC<Props> = (props) => {
   const { playerList, addScore, substructScore } = props;
