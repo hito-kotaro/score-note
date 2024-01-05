@@ -10,7 +10,7 @@ import { useSnackbar } from "./hooks/useSnackbar";
 import { SaveScoreDialog } from "./molcules/SaveScoreDialog/SaveScoreDialog";
 
 interface Props {
-  playerList: Player[];
+  sortedPlayerList: Player[];
   scoreList: Player[][];
   addScore: (id: string, add: number) => void;
   substructScore: (id: string, sub: number) => void;
@@ -22,7 +22,7 @@ interface Props {
 
 const GamePageComponents: FC<Props> = (props) => {
   const {
-    playerList,
+    sortedPlayerList,
     scoreList,
     addScore,
     substructScore,
@@ -31,6 +31,7 @@ const GamePageComponents: FC<Props> = (props) => {
     changeContentId,
     clearPlayerList,
   } = props;
+  console.log(sortedPlayerList);
 
   const headerMenu = useHeaderMenu();
   const finishDialog = useDialog();
@@ -115,7 +116,7 @@ const GamePageComponents: FC<Props> = (props) => {
 
       {/*PlayerList*/}
       <Box className="mt-3 px-2">
-        {playerList.map((p: Player) => {
+        {sortedPlayerList.map((p: Player) => {
           return (
             <Box key={p.id} className="mb-3">
               <PlayerListItem

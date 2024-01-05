@@ -6,9 +6,14 @@ export const usePlayer = () => {
   const [playerList, setPlayerList] = useState<Player[]>([]);
   const [scoreList, setScoreList] = useState<Player[][]>([]);
   const [playerName, setPlayerName] = useState("");
+  const [sortedPlayerList, setSortedPlayerList] =
+    useState<Player[]>(playerList);
 
   const changePlayerList = (newPlayerList: Player[]) => {
     setPlayerList(newPlayerList);
+    setSortedPlayerList(
+      newPlayerList.sort((a, b) => a.name.localeCompare(b.name)),
+    );
   };
 
   const onChangePlayerName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,6 +30,9 @@ export const usePlayer = () => {
     const newPlayerList = [...playerList];
     newPlayerList.push(newPlayer);
     setPlayerList(newPlayerList);
+    setSortedPlayerList(
+      newPlayerList.sort((a, b) => a.name.localeCompare(b.name)),
+    );
     setPlayerName("");
   };
 
@@ -34,6 +42,9 @@ export const usePlayer = () => {
     });
 
     setPlayerList(newPlayerList);
+    setSortedPlayerList(
+      newPlayerList.sort((a, b) => a.name.localeCompare(b.name)),
+    );
   };
 
   const updatePlayer = (newPlayerData: Player) => {
@@ -52,10 +63,16 @@ export const usePlayer = () => {
   const clearPlayerList = () => {
     const newPlayerList: Player[] = [];
     setPlayerList(newPlayerList);
+    setSortedPlayerList(
+      newPlayerList.sort((a, b) => a.name.localeCompare(b.name)),
+    );
   };
 
   const updateAllPlayer = (newPlayerList: Player[]) => {
     setPlayerList(newPlayerList);
+    setSortedPlayerList(
+      newPlayerList.sort((a, b) => a.name.localeCompare(b.name)),
+    );
   };
 
   const addScore = (id: string, add: number) => {
@@ -119,10 +136,14 @@ export const usePlayer = () => {
           return player;
         });
 
-        currentScore.push(newScoreList.sort((a,b) => a.name.localeCompare(b.name)));
+        // scorepageで同じ並びにするため名前の順
+        currentScore.push(
+          newScoreList.sort((a, b) => a.name.localeCompare(b.name)),
+        );
         setScoreList(currentScore);
         localStorage.setItem("score", JSON.stringify(currentScore));
 
+        // resultで得点順にするためtotal順
         updateAllPlayer(newPlayerList.sort((a, b) => b.total - a.total));
         localStorage.setItem("player", JSON.stringify(newPlayerList));
       } else {
@@ -167,7 +188,9 @@ export const usePlayer = () => {
           }
         });
 
-        currentScore.push(newScoreList.sort((a,b) => a.name.localeCompare(b.name)));
+        currentScore.push(
+          newScoreList.sort((a, b) => a.name.localeCompare(b.name)),
+        );
         setScoreList(currentScore);
         localStorage.setItem("score", JSON.stringify(currentScore));
 
@@ -186,10 +209,14 @@ export const usePlayer = () => {
       };
     });
     setPlayerList(newPlayerList);
+    setSortedPlayerList(
+      newPlayerList.sort((a, b) => a.name.localeCompare(b.name)),
+    );
   };
 
   return {
     playerList,
+    sortedPlayerList,
     scoreList,
     playerName,
     clearPlayerList,

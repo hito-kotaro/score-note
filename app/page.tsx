@@ -14,6 +14,7 @@ const Page = () => {
   const { contentId, changeContentId } = useContentId();
   const {
     playerList,
+    sortedPlayerList,
     scoreList,
     playerName,
     onChangePlayerName,
@@ -44,7 +45,7 @@ const Page = () => {
           )}
           {contentId === 1 ? (
             <GamePageComponents
-              playerList={playerList}
+              sortedPlayerList={sortedPlayerList}
               scoreList={scoreList}
               addScore={addScore}
               substructScore={substructScore}
