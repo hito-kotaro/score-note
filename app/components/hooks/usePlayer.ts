@@ -48,14 +48,11 @@ export const usePlayer = () => {
     }
   };
 
-  const clearScore = () => {
-    let newPlayerList = [...playerList];
-    newPlayerList.map((p: Player) => {
-      p.score = 0;
-    });
-
+  const clearPlayerList = () => {
+    const newPlayerList: Player[] = [];
     setPlayerList(newPlayerList);
   };
+
 
   const updateAllPlayer = (newPlayerList: Player[]) => {
     setPlayerList(newPlayerList);
@@ -175,11 +172,23 @@ export const usePlayer = () => {
       }
     }
   };
+  const resetScore = () => {
+    console.log(playerList);
+    const newPlayerList = playerList.map((p: Player) => {
+      return {
+        id: p.id,
+        name: p.name,
+        score: 0,
+        total: p.total,
+      };
+    });
+    setPlayerList(newPlayerList);
+  };
 
   return {
     playerList,
     playerName,
-    clearScore,
+    clearPlayerList,
     updateAllPlayer,
     onChangePlayerName,
     addPlayer,
@@ -188,5 +197,6 @@ export const usePlayer = () => {
     addScore,
     substructScore,
     saveScore,
+    resetScore,
   };
 };

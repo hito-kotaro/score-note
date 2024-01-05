@@ -36,12 +36,18 @@ export const AddPointDialog: FC<Props> = (props) => {
     <Dialog onClose={onCloseDialog} open={isOpen}>
       <Box className="bg-red-50">
         <DialogTitle>任意のポイントを加点</DialogTitle>
-        <DialogContent className="bg-green-200 flex justify-center">
-          <TextField variant="standard" value={input} onChange={onChange} />
+        <DialogContent className="flex justify-center">
+          <TextField
+            color="green"
+						focused
+            variant="standard"
+            value={input}
+            onChange={onChange}
+          />
         </DialogContent>
         <DialogActions>
           <Button
-            disabled={isInvalidValue}
+            disabled={input === "" || isInvalidValue}
             variant="contained"
             className="bg-primary text-white"
             onClick={() => {
