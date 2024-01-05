@@ -26,7 +26,7 @@ export const PlayerListItem: FC<Props> = (props) => {
   } = useAddPointDialog();
 
   return (
-    <Box className="flex justify-between bg-white drop-shadow-lg rounded-lg p-2">
+    <Box className="flex justify-between p-2">
       <AddPointDialog
         player={player}
         isOpen={isOpen}

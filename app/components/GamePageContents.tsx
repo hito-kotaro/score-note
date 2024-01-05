@@ -117,7 +117,7 @@ const GamePageComponents: FC<Props> = (props) => {
       <Box className="mt-3 px-2">
         {playerList.map((p: Player) => {
           return (
-            <Box key={p.id} className="mt-3">
+            <Box key={p.id} className="mb-3">
               <PlayerListItem
                 player={p}
                 addScore={addScore}
