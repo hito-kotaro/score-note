@@ -45,7 +45,6 @@ export const AddPointDialog: FC<Props> = (props) => {
             variant="contained"
             className="bg-primary text-white"
             onClick={() => {
-              console.log(input);
               onCloseDialog();
               addScore(player.id, Number(input));
               clear();

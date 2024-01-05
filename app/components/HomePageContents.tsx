@@ -24,6 +24,13 @@ const HomePageContents: FC<Props> = (props) => {
     removePlayer,
   } = props;
 
+  const gameStart = () => {
+    changeContentId(1);
+    const initialScore: Player[][] = [];
+    localStorage.setItem("score", JSON.stringify(initialScore));
+    localStorage.setItem("player", JSON.stringify(playerList));
+  };
+
   return (
     <Box className="px-2">
       {/*Header*/}
@@ -71,7 +78,7 @@ const HomePageContents: FC<Props> = (props) => {
             variant="contained"
             className="bg-primary text-white hover:bg-primary"
             disabled={playerList.length === 0}
-            onClick={() => changeContentId(1)}
+            onClick={gameStart}
           >
             このメンバーで始める
           </Button>

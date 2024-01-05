@@ -20,6 +20,8 @@ const Page = () => {
     removePlayer,
     addScore,
     substructScore,
+    clearScore,
+		saveScore,
   } = usePlayer();
 
   return (
@@ -40,9 +42,11 @@ const Page = () => {
           )}
           {contentId === 1 ? (
             <GamePageComponents
+              clearScore={clearScore}
               playerList={playerList}
               addScore={addScore}
               substructScore={substructScore}
+							saveScore={saveScore}
             />
           ) : (
             ""
