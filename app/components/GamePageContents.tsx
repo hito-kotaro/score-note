@@ -1,12 +1,9 @@
 "use client";
-import { Box, Button, IconButton } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import { Box, Button } from "@mui/material";
 import { Player } from "../types/player";
 import { FC } from "react";
 import { PlayerListItem } from "./molcules/PlayerListItem";
 import { useHeaderMenu } from "./molcules/HeaderMenu/useHeaderMenu";
-import { HeaderMenu } from "./molcules/HeaderMenu/HeaderMenu";
-import { FinishDialog } from "./molcules/FinishDialog/FinishDialog";
 import { useFinishDialog } from "./molcules/FinishDialog/useFinishDialog";
 import { GameHeader } from "./molcules/GameHeader/GameHeader";
 

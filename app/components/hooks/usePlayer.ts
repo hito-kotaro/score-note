@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export const usePlayer = () => {
   const [playerList, setPlayerList] = useState<Player[]>([]);
+  const [scoreList, setScoreList] = useState<Player[][]>([]);
   const [playerName, setPlayerName] = useState("");
 
   const changePlayerList = (newPlayerList: Player[]) => {
@@ -52,7 +53,6 @@ export const usePlayer = () => {
     const newPlayerList: Player[] = [];
     setPlayerList(newPlayerList);
   };
-
 
   const updateAllPlayer = (newPlayerList: Player[]) => {
     setPlayerList(newPlayerList);
@@ -120,7 +120,9 @@ export const usePlayer = () => {
         });
 
         currentScore.push(newScoreList);
+				setScoreList(currentScore)
         localStorage.setItem("score", JSON.stringify(currentScore));
+
         updateAllPlayer(newPlayerList);
         localStorage.setItem("player", JSON.stringify(newPlayerList));
       } else {
@@ -166,14 +168,15 @@ export const usePlayer = () => {
         });
 
         currentScore.push(newScoreList);
+				setScoreList(currentScore)
         localStorage.setItem("score", JSON.stringify(currentScore));
+
         updateAllPlayer(newPlayerList);
         localStorage.setItem("player", JSON.stringify(newPlayerList));
       }
     }
   };
   const resetScore = () => {
-    console.log(playerList);
     const newPlayerList = playerList.map((p: Player) => {
       return {
         id: p.id,
@@ -187,6 +190,7 @@ export const usePlayer = () => {
 
   return {
     playerList,
+		scoreList,
     playerName,
     clearPlayerList,
     updateAllPlayer,

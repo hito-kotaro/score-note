@@ -14,6 +14,7 @@ const Page = () => {
   const { contentId, changeContentId } = useContentId();
   const {
     playerList,
+		scoreList,
     playerName,
     onChangePlayerName,
     addPlayer,
@@ -57,6 +58,7 @@ const Page = () => {
           {contentId === 2 ? (
             <ScorePageContents
               playerList={playerList}
+							scoreList={scoreList}
               changeContentId={changeContentId}
             />
           ) : (
