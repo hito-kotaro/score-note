@@ -4,8 +4,8 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { Box, IconButton } from "@mui/material";
 import { FC } from "react";
-import { AddPointDialog } from "../organizations/AddPointDialog/AddPointDialog";
-import { useAddPointDialog } from "../organizations/AddPointDialog/useAddPointDialog";
+import { AddPointDialog } from "../../organizations/AddPointDialog/AddPointDialog";
+import { useAddPointDialog } from "../../organizations/AddPointDialog/useAddPointDialog";
 
 interface Props {
   player: Player;

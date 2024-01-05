@@ -45,6 +45,7 @@ const Page = () => {
           {contentId === 1 ? (
             <GamePageComponents
               playerList={playerList}
+              scoreList={scoreList}
               addScore={addScore}
               substructScore={substructScore}
               saveScore={saveScore}
@@ -67,7 +68,7 @@ const Page = () => {
             <ResultPageContents
               playerList={playerList}
               changeContentId={changeContentId}
-							clearPlayerList={clearPlayerList}
+              clearPlayerList={clearPlayerList}
             />
           ) : (
             ""

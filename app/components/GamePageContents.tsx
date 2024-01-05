@@ -1,14 +1,17 @@
 "use client";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Snackbar } from "@mui/material";
 import { Player } from "../types/player";
 import { FC } from "react";
-import { PlayerListItem } from "./molcules/PlayerListItem";
+import { PlayerListItem } from "./molcules/PlayerListItem/PlayerListItem";
 import { useHeaderMenu } from "./molcules/HeaderMenu/useHeaderMenu";
-import { useFinishDialog } from "./molcules/FinishDialog/useFinishDialog";
+import { useDialog } from "./hooks/useDialog";
 import { GameHeader } from "./molcules/GameHeader/GameHeader";
+import { useSnackbar } from "./hooks/useSnackbar";
+import { SaveScoreDialog } from "./molcules/SaveScoreDialog/SaveScoreDialog";
 
 interface Props {
   playerList: Player[];
+  scoreList: Player[][];
   addScore: (id: string, add: number) => void;
   substructScore: (id: string, sub: number) => void;
   clearPlayerList: () => void;
@@ -20,6 +23,7 @@ interface Props {
 const GamePageComponents: FC<Props> = (props) => {
   const {
     playerList,
+    scoreList,
     addScore,
     substructScore,
     saveScore,
@@ -28,29 +32,89 @@ const GamePageComponents: FC<Props> = (props) => {
     clearPlayerList,
   } = props;
 
-  const { isOpen, anchorEl, handleClose, handleClick } = useHeaderMenu();
-  const finishDialog = useFinishDialog();
+  const headerMenu = useHeaderMenu();
+  const finishDialog = useDialog();
+  const saveScoreDialog = useDialog();
+  const snackbar = useSnackbar();
 
   return (
     <Box>
+      {/*Snackbar*/}
+      <Snackbar
+        open={snackbar.isOpen}
+        autoHideDuration={3000}
+        onClose={snackbar.handleClose}
+        message="スコアを記録しました。"
+      />
+      {/*Dialog*/}
+      <SaveScoreDialog
+        isOpen={saveScoreDialog.isOpen}
+        handleClose={saveScoreDialog.handleClose}
+				snackbarHandleOpen={snackbar.handleOpen}
+				saveScore={saveScore}
+      />
       {/*Header*/}
       <Box>
         <GameHeader
-          handleMenuClick={handleClick}
-          handleMenuClose={handleClose}
-          menuIsOpen={isOpen}
+          handleMenuClick={headerMenu.handleClick}
+          handleMenuClose={headerMenu.handleClose}
+          menuIsOpen={headerMenu.isOpen}
           dialogIsOpen={finishDialog.isOpen}
-          onOpenDialog={finishDialog.onOpenDialog}
-          onCloseDialog={finishDialog.onCloseDialog}
-          anchorEl={anchorEl}
+          handleOpenDialog={finishDialog.handleOpen}
+          handleCloseDialog={finishDialog.handleClose}
+          anchorEl={headerMenu.anchorEl}
           resetScore={resetScore}
           changeContentId={changeContentId}
           clearPlayerList={clearPlayerList}
           needMenu={true}
         />
       </Box>
+
+      {/*Display*/}
+      <Box className="mt-6 text-primary text-2xl font-semibold text-center">
+        {`第 ${scoreList.length + 1} セット`}
+      </Box>
+
+      {/*Buttons*/}
+      <Box className="mt-3 flex justify-around ">
+        <Box className="flex justify-center">
+          <Button
+            fullWidth
+            variant="contained"
+            className="bg-primary hover:bg-primary"
+            onClick={saveScoreDialog.handleOpen}
+          >
+            記録
+          </Button>
+        </Box>
+        <Box className="flex justify-center">
+          <Button
+            fullWidth
+            variant="outlined"
+            className="border-primary hover:border-primary text-primary"
+            onClick={() => {
+              changeContentId(2);
+            }}
+          >
+            閲覧
+          </Button>
+        </Box>
+        <Box className="flex justify-center ">
+          <Button
+            fullWidth
+            variant="contained"
+            className="bg-secondary hover:bg-secondary"
+            onClick={() => {
+              changeContentId(3);
+            }}
+          >
+            集計
+          </Button>
+        </Box>
+      </Box>
+
       {/*PlayerList*/}
-      <Box className="mt-6 px-2">
+      <Box className="mt-3 px-2">
         {playerList.map((p: Player) => {
           return (
             <Box key={p.id} className="mt-3">
@@ -62,45 +126,6 @@ const GamePageComponents: FC<Props> = (props) => {
             </Box>
           );
         })}
-      </Box>
-      {/*Buttons*/}
-      <Box className="mt-6 flex justify-center">
-        <Box className="w-2/3">
-          <Box className="flex justify-center mt-3">
-            <Button
-              fullWidth
-              variant="contained"
-              className="bg-primary hover:bg-primary"
-              onClick={saveScore}
-            >
-              このセットの結果を記録
-            </Button>
-          </Box>
-          <Box className="flex justify-center mt-3">
-            <Button
-              fullWidth
-              variant="outlined"
-              className="border-primary hover:border-primary text-primary"
-              onClick={() => {
-                changeContentId(2);
-              }}
-            >
-              各セットの結果を閲覧
-            </Button>
-          </Box>
-          <Box className="flex justify-center mt-3">
-            <Button
-              fullWidth
-              variant="contained"
-              className="bg-secondary hover:bg-secondary"
-              onClick={() => {
-                changeContentId(3);
-              }}
-            >
-              集計結果を確認
-            </Button>
-          </Box>
-        </Box>
       </Box>
     </Box>
   );

@@ -34,12 +34,12 @@ export const AddPointDialog: FC<Props> = (props) => {
 
   return (
     <Dialog onClose={onCloseDialog} open={isOpen}>
-      <Box className="bg-red-50">
+      <Box>
         <DialogTitle>任意のポイントを加点</DialogTitle>
         <DialogContent className="flex justify-center">
           <TextField
             color="green"
-						focused
+            focused
             variant="standard"
             value={input}
             onChange={onChange}

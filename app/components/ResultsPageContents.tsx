@@ -3,8 +3,8 @@ import { Player } from "../types/player";
 import { FC } from "react";
 import { GameHeader } from "./molcules/GameHeader/GameHeader";
 import { FinishDialog } from "./molcules/FinishDialog/FinishDialog";
-import { useFinishDialog } from "./molcules/FinishDialog/useFinishDialog";
 import { SimplePlayerListItem } from "./molcules/SimplePlayerListItem/SimplePlayerListItem";
+import { useDialog } from "./hooks/useDialog";
 
 interface Props {
   playerList: Player[];
@@ -14,7 +14,7 @@ interface Props {
 
 const ResultPageContents: FC<Props> = (props) => {
   const { playerList, changeContentId, clearPlayerList } = props;
-  const { isOpen, onOpenDialog, onCloseDialog } = useFinishDialog();
+  const { isOpen, handleOpen, handleClose } = useDialog();
 
   return (
     <Box>
@@ -37,7 +37,7 @@ const ResultPageContents: FC<Props> = (props) => {
             <Button
               fullWidth
               className="mt-3 bg-secondary hover:bg-secondary text-white"
-              onClick={onOpenDialog}
+              onClick={handleOpen}
             >
               ゲーム終了
             </Button>
@@ -48,7 +48,7 @@ const ResultPageContents: FC<Props> = (props) => {
       {/*Dialog*/}
       <FinishDialog
         isOpen={isOpen}
-        onCloseDialog={onCloseDialog}
+        onCloseDialog={handleClose}
         changeContentId={changeContentId}
         clearPlayerList={clearPlayerList}
       />

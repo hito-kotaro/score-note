@@ -9,8 +9,8 @@ interface Props {
   handleMenuClose?: () => void;
   menuIsOpen?: boolean;
   dialogIsOpen?: boolean;
-  onOpenDialog?: () => void;
-  onCloseDialog?: () => void;
+  handleOpenDialog?: () => void;
+  handleCloseDialog?: () => void;
   anchorEl?: null | HTMLElement;
   resetScore?: () => void;
   changeContentId?: (id: number) => void;
@@ -24,8 +24,8 @@ export const GameHeader: FC<Props> = (props) => {
     handleMenuClick,
     menuIsOpen,
     dialogIsOpen,
-    onOpenDialog,
-    onCloseDialog,
+    handleOpenDialog,
+    handleCloseDialog,
     anchorEl,
     resetScore,
     changeContentId,
@@ -34,25 +34,25 @@ export const GameHeader: FC<Props> = (props) => {
   } = props;
   return (
     <Box className="bg-white p-2 rounded-b-lg drop-shadow-lg flex justify-between">
-      <Box className="bg-primary h-14 w-14 rounded-lg text-5xl text-white flex justify-center items-center">
+      <Box className="bg-primary h-10 w-10 rounded-lg text-3xl text-white flex justify-center items-center">
         S
       </Box>
       <Box className="flex justify-around ">
         {needMenu ? (
           <>
             <IconButton onClick={handleMenuClick}>
-              <MenuIcon fontSize="large" />
+              <MenuIcon fontSize="medium" />
             </IconButton>
             <HeaderMenu
               isOpen={menuIsOpen!}
               anchorEl={anchorEl!}
               handleClose={handleMenuClose!}
               resetScore={resetScore!}
-              openFinishDialog={onOpenDialog!}
+              openFinishDialog={handleOpenDialog!}
             />
             <FinishDialog
               isOpen={dialogIsOpen!}
-              onCloseDialog={onCloseDialog!}
+              onCloseDialog={handleCloseDialog!}
               changeContentId={changeContentId!}
               clearPlayerList={clearPlayerList!}
             />
