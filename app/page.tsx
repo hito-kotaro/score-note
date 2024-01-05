@@ -1,6 +1,5 @@
 "use client";
-import { Box, Button } from "@mui/material";
-import { ScorePageContents } from "./components/ScorePageContents";
+import { Box } from "@mui/material";
 import { ResultPageContents } from "./components/ResultsPageContents";
 import { NotFoundPageContents } from "./components/NotFoundPageContents";
 import HomePageContents from "./components/HomePageContents";
@@ -9,6 +8,7 @@ import { useContentId } from "./components/hooks/useContentId";
 import { usePlayer } from "./components/hooks/usePlayer";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "./theme";
+import ScorePageContents from "./components/ScorePageContents";
 
 const Page = () => {
   const { contentId, changeContentId } = useContentId();
@@ -54,7 +54,14 @@ const Page = () => {
           ) : (
             ""
           )}
-          {contentId === 2 ? <ScorePageContents /> : ""}
+          {contentId === 2 ? (
+            <ScorePageContents
+              playerList={playerList}
+              changeContentId={changeContentId}
+            />
+          ) : (
+            ""
+          )}
           {contentId === 3 ? <ResultPageContents /> : ""}
           {contentId !== 0 &&
           contentId !== 1 &&

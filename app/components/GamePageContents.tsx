@@ -2,12 +2,13 @@
 import { Box, Button, IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Player } from "../types/player";
-import { FC  } from "react";
+import { FC } from "react";
 import { PlayerListItem } from "./molcules/PlayerListItem";
 import { useHeaderMenu } from "./molcules/HeaderMenu/useHeaderMenu";
 import { HeaderMenu } from "./molcules/HeaderMenu/HeaderMenu";
 import { FinishDialog } from "./molcules/FinishDialog/FinishDialog";
 import { useFinishDialog } from "./molcules/FinishDialog/useFinishDialog";
+import { GameHeader } from "./molcules/GameHeader/GameHeader";
 
 interface Props {
   playerList: Player[];
@@ -37,29 +38,19 @@ const GamePageComponents: FC<Props> = (props) => {
     <Box>
       {/*Header*/}
       <Box>
-        <Box className="bg-white p-2 rounded-b-lg drop-shadow-lg flex justify-between">
-          <Box className="bg-primary h-14 w-14 rounded-lg text-5xl text-white flex justify-center items-center">
-            S
-          </Box>
-          <Box className="flex justify-around ">
-            <IconButton onClick={handleClick}>
-              <MenuIcon fontSize="large" />
-            </IconButton>
-            <HeaderMenu
-              isOpen={isOpen}
-              anchorEl={anchorEl}
-              handleClose={handleClose}
-              resetScore={resetScore}
-              openFinishDialog={finishDialog.onOpenDialog}
-            />
-            <FinishDialog
-              isOpen={finishDialog.isOpen}
-              onCloseDialog={finishDialog.onCloseDialog}
-              changeContentId={changeContentId}
-              clearPlayerList={clearPlayerList}
-            />
-          </Box>
-        </Box>
+        <GameHeader
+          handleMenuClick={handleClick}
+          handleMenuClose={handleClose}
+          menuIsOpen={isOpen}
+          dialogIsOpen={finishDialog.isOpen}
+          onOpenDialog={finishDialog.onOpenDialog}
+          onCloseDialog={finishDialog.onCloseDialog}
+          anchorEl={anchorEl}
+          resetScore={resetScore}
+          changeContentId={changeContentId}
+          clearPlayerList={clearPlayerList}
+					needMenu={true}
+        />
       </Box>
       {/*PlayerList*/}
       <Box className="mt-6 px-2">
@@ -93,6 +84,9 @@ const GamePageComponents: FC<Props> = (props) => {
               fullWidth
               variant="outlined"
               className="border-primary hover:border-primary text-primary"
+              onClick={() => {
+                changeContentId(2);
+              }}
             >
               各セットの結果を閲覧
             </Button>
