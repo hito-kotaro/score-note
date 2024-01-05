@@ -68,7 +68,7 @@ const HomePageContents: FC<Props> = (props) => {
             onClick={() => addPlayer(playerName)}
             sx={{ minWidth: "10px", maxWidth: "10px" }}
           >
-            <Add fontSize="small" className="text-white" />
+            <Add fontSize="small" />
           </Button>
         </Box>
       </Box>
@@ -79,7 +79,6 @@ const HomePageContents: FC<Props> = (props) => {
           <Button
             variant="contained"
             color="green"
-            sx={{ color: "white" }}
             disabled={playerList.length === 0}
             onClick={gameStart}
           >
@@ -89,7 +88,7 @@ const HomePageContents: FC<Props> = (props) => {
       </Box>
 
       {/*PlayerList*/}
-      <Box className='mt-6'>
+      <Box className="mt-6">
         {playerList.map((p: Player) => (
           <Box key={p.id} className="mt-3">
             <JoinPlayerListItem player={p} removePlayer={removePlayer} />

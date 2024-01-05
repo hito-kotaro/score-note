@@ -49,7 +49,7 @@ export const AddPointDialog: FC<Props> = (props) => {
           <Button
             disabled={input === "" || isInvalidValue}
             variant="contained"
-            className="bg-primary text-white"
+            color="green"
             onClick={() => {
               onCloseDialog();
               addScore(player.id, Number(input));

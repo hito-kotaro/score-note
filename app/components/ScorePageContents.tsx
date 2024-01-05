@@ -22,8 +22,9 @@ const ScorePageContents: FC<Props> = (props) => {
       <Box className="mt-6 flex justify-center">
         <Box className="w-1/2">
           <Button
+            variant="contained"
+            color="green"
             fullWidth
-            className="bg-primary hover:bg-primary text-white"
             onClick={() => {
               changeContentId(1);
             }}

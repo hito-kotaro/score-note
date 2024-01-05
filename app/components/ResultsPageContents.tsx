@@ -25,22 +25,28 @@ const ResultPageContents: FC<Props> = (props) => {
       <Box>
         <Box className="mt-6 flex justify-center">
           <Box className="w-1/2">
-            <Button
-              fullWidth
-              className="bg-primary hover:bg-primary text-white"
-              onClick={() => {
-                changeContentId(1);
-              }}
-            >
-              ゲームに戻る
-            </Button>
-            <Button
-              fullWidth
-              className="mt-3 bg-secondary hover:bg-secondary text-white"
-              onClick={handleOpen}
-            >
-              ゲーム終了
-            </Button>
+            <Box>
+              <Button
+                variant="contained"
+                color="green"
+                fullWidth
+                onClick={() => {
+                  changeContentId(1);
+                }}
+              >
+                ゲームに戻る
+              </Button>
+            </Box>
+            <Box className="mt-3">
+              <Button
+                variant="contained"
+                color="orange"
+                fullWidth
+                onClick={handleOpen}
+              >
+                ゲーム終了
+              </Button>
+            </Box>
           </Box>
         </Box>
       </Box>

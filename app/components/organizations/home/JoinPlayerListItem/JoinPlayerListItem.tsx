@@ -1,6 +1,6 @@
 import { Player } from "@/app/types/player";
 import Clear from "@mui/icons-material/Clear";
-import { Box, Button, IconButton, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { FC } from "react";
 
 interface Props {
@@ -26,7 +26,7 @@ export const JoinPlayerListItem: FC<Props> = (props) => {
         sx={{ width: "10px", minWidth: "10px" }}
         color="orange"
       >
-        <Clear fontSize="small" className="text-white" />
+        <Clear fontSize="small" />
       </Button>
     </Box>
   );

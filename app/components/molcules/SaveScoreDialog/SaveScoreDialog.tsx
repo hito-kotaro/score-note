@@ -27,7 +27,7 @@ export const SaveScoreDialog: FC<Props> = (props) => {
         <DialogActions>
           <Button
             variant="contained"
-            className="bg-secondary hover:bg-secondary text-white"
+            color="orange"
             onClick={() => {
               snackbarHandleOpen();
               saveScore();
@@ -37,8 +37,8 @@ export const SaveScoreDialog: FC<Props> = (props) => {
             記録
           </Button>
           <Button
-            variant="outlined"
-            className="bg-primary hover:bg-primary text-white"
+            variant="contained"
+						color='green'
             onClick={() => {
               handleClose();
             }}

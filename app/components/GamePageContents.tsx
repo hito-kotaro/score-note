@@ -50,8 +50,8 @@ const GamePageComponents: FC<Props> = (props) => {
       <SaveScoreDialog
         isOpen={saveScoreDialog.isOpen}
         handleClose={saveScoreDialog.handleClose}
-				snackbarHandleOpen={snackbar.handleOpen}
-				saveScore={saveScore}
+        snackbarHandleOpen={snackbar.handleOpen}
+        saveScore={saveScore}
       />
       {/*Header*/}
       <Box>
@@ -79,9 +79,9 @@ const GamePageComponents: FC<Props> = (props) => {
       <Box className="mt-3 flex justify-around ">
         <Box className="flex justify-center">
           <Button
-            fullWidth
             variant="contained"
-            className="bg-primary hover:bg-primary"
+            color="green"
+            sx={{ color: "white" }}
             onClick={saveScoreDialog.handleOpen}
           >
             記録
@@ -89,9 +89,9 @@ const GamePageComponents: FC<Props> = (props) => {
         </Box>
         <Box className="flex justify-center">
           <Button
-            fullWidth
-            variant="outlined"
-            className="border-primary hover:border-primary text-primary"
+            variant="contained"
+            color="green"
+            sx={{ color: "white" }}
             onClick={() => {
               changeContentId(2);
             }}
@@ -101,9 +101,9 @@ const GamePageComponents: FC<Props> = (props) => {
         </Box>
         <Box className="flex justify-center ">
           <Button
-            fullWidth
             variant="contained"
-            className="bg-secondary hover:bg-secondary"
+            color="orange"
+            sx={{ color: "white" }}
             onClick={() => {
               changeContentId(3);
             }}

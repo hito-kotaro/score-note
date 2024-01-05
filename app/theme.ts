@@ -31,13 +31,13 @@ export const theme = createTheme({
       main: "#4FBB20",
       light: "#4FBB20D",
       dark: "#4FBB20",
-      contrastText: "#E9DB5",
+      contrastText: "#FFFFFF",
     },
     orange: {
       main: "#FB6439",
       light: "#FB6439",
       dark: "#FB6439",
-      contrastText: "#FB6439",
+      contrastText: "#FFFFFF",
     },
   },
 });
