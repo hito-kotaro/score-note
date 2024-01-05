@@ -1,8 +1,7 @@
 import Add from "@mui/icons-material/Add";
-import { Box, Button, IconButton, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import { JoinPlayerListItem } from "./organizations/home/JoinPlayerListItem/JoinPlayerListItem";
 import { Player } from "../types/player";
-import { usePlayer } from "./hooks/usePlayer";
 import { FC } from "react";
 
 interface Props {
@@ -62,12 +61,15 @@ const HomePageContents: FC<Props> = (props) => {
           />
         </Box>
         <Box>
-          <IconButton
-            className="bg-primary hover:bg-primary"
+          <Button
+            variant="contained"
+            disabled={playerName.length === 0}
+            color="green"
             onClick={() => addPlayer(playerName)}
+            sx={{ minWidth: "10px", maxWidth: "10px" }}
           >
             <Add fontSize="small" className="text-white" />
-          </IconButton>
+          </Button>
         </Box>
       </Box>
 
@@ -76,7 +78,8 @@ const HomePageContents: FC<Props> = (props) => {
         <Box className="flex justify-center">
           <Button
             variant="contained"
-            className="bg-primary text-white hover:bg-primary"
+            color="green"
+            sx={{ color: "white" }}
             disabled={playerList.length === 0}
             onClick={gameStart}
           >
@@ -86,7 +89,7 @@ const HomePageContents: FC<Props> = (props) => {
       </Box>
 
       {/*PlayerList*/}
-      <Box>
+      <Box className='mt-6'>
         {playerList.map((p: Player) => (
           <Box key={p.id} className="mt-3">
             <JoinPlayerListItem player={p} removePlayer={removePlayer} />
