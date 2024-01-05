@@ -5,7 +5,6 @@ import { Player } from "../types/player";
 import { SimplePlayerList } from "./molcules/SimplePlayerList/SimplePlayerList";
 
 interface Props {
-  playerList: Player[];
   scoreList: Player[][];
   changeContentId: (id: number) => void;
 }
@@ -39,7 +38,10 @@ const ScorePageContents: FC<Props> = (props) => {
           {scoreList.map((score: Player[], index) => {
             return (
               <Box key={index} className="mb-6">
-                <SimplePlayerList score={score} index={index} />
+                <SimplePlayerList
+                  score={score}
+                  label={`第${index + 1}セット`}
+                />
               </Box>
             );
           })}

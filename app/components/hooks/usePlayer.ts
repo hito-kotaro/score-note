@@ -119,11 +119,11 @@ export const usePlayer = () => {
           return player;
         });
 
-        currentScore.push(newScoreList);
-				setScoreList(currentScore)
+        currentScore.push(newScoreList.sort((a,b) => a.name.localeCompare(b.name)));
+        setScoreList(currentScore);
         localStorage.setItem("score", JSON.stringify(currentScore));
 
-        updateAllPlayer(newPlayerList);
+        updateAllPlayer(newPlayerList.sort((a, b) => b.total - a.total));
         localStorage.setItem("player", JSON.stringify(newPlayerList));
       } else {
         //2回目以降の場合
@@ -167,11 +167,11 @@ export const usePlayer = () => {
           }
         });
 
-        currentScore.push(newScoreList);
-				setScoreList(currentScore)
+        currentScore.push(newScoreList.sort((a,b) => a.name.localeCompare(b.name)));
+        setScoreList(currentScore);
         localStorage.setItem("score", JSON.stringify(currentScore));
 
-        updateAllPlayer(newPlayerList);
+        updateAllPlayer(newPlayerList.sort((a, b) => b.total - a.total));
         localStorage.setItem("player", JSON.stringify(newPlayerList));
       }
     }
@@ -190,7 +190,7 @@ export const usePlayer = () => {
 
   return {
     playerList,
-		scoreList,
+    scoreList,
     playerName,
     clearPlayerList,
     updateAllPlayer,

@@ -5,15 +5,13 @@ import { SimplePlayerListItem } from "../SimplePlayerListItem/SimplePlayerListIt
 
 interface Props {
   score: Player[];
-  index: number;
+  label: string;
 }
 export const SimplePlayerList: FC<Props> = (props) => {
-  const { score, index } = props;
+  const { score, label } = props;
   return (
     <Box>
-      <Box className="text-xl font-semibold text-secondary">
-        {`第${index + 1}セット`}
-      </Box>
+      <Box className="text-xl font-semibold text-secondary">{label}</Box>
 
       {score.map((p: Player) => {
         return (

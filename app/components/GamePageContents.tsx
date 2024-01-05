@@ -46,7 +46,7 @@ const GamePageComponents: FC<Props> = (props) => {
           resetScore={resetScore}
           changeContentId={changeContentId}
           clearPlayerList={clearPlayerList}
-					needMenu={true}
+          needMenu={true}
         />
       </Box>
       {/*PlayerList*/}
@@ -93,6 +93,9 @@ const GamePageComponents: FC<Props> = (props) => {
               fullWidth
               variant="contained"
               className="bg-secondary hover:bg-secondary"
+              onClick={() => {
+                changeContentId(3);
+              }}
             >
               集計結果を確認
             </Button>

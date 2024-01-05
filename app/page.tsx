@@ -1,6 +1,5 @@
 "use client";
 import { Box } from "@mui/material";
-import { ResultPageContents } from "./components/ResultsPageContents";
 import { NotFoundPageContents } from "./components/NotFoundPageContents";
 import HomePageContents from "./components/HomePageContents";
 import GamePageComponents from "./components/GamePageContents";
@@ -9,12 +8,13 @@ import { usePlayer } from "./components/hooks/usePlayer";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "./theme";
 import ScorePageContents from "./components/ScorePageContents";
+import ResultPageContents from "./components/ResultsPageContents";
 
 const Page = () => {
   const { contentId, changeContentId } = useContentId();
   const {
     playerList,
-		scoreList,
+    scoreList,
     playerName,
     onChangePlayerName,
     addPlayer,
@@ -57,14 +57,21 @@ const Page = () => {
           )}
           {contentId === 2 ? (
             <ScorePageContents
-              playerList={playerList}
-							scoreList={scoreList}
+              scoreList={scoreList}
               changeContentId={changeContentId}
             />
           ) : (
             ""
           )}
-          {contentId === 3 ? <ResultPageContents /> : ""}
+          {contentId === 3 ? (
+            <ResultPageContents
+              playerList={playerList}
+              changeContentId={changeContentId}
+							clearPlayerList={clearPlayerList}
+            />
+          ) : (
+            ""
+          )}
           {contentId !== 0 &&
           contentId !== 1 &&
           contentId !== 2 &&
