@@ -63,9 +63,8 @@ export const usePlayer = () => {
   const clearPlayerList = () => {
     const newPlayerList: Player[] = [];
     setPlayerList(newPlayerList);
-    setSortedPlayerList(
-      newPlayerList.sort((a, b) => a.name.localeCompare(b.name)),
-    );
+    setSortedPlayerList([]);
+    setScoreList([]);
   };
 
   const updateAllPlayer = (newPlayerList: Player[]) => {
