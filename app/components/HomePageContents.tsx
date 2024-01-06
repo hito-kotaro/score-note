@@ -29,7 +29,6 @@ const HomePageContents: FC<Props> = (props) => {
     continueData,
     clearPlayerList,
   } = props;
-  const [isContinue, setIsContinue] = useState<boolean>(true);
   const snackbar = useSnackbar();
   const continueDialog = useDialog();
 
@@ -41,7 +40,6 @@ const HomePageContents: FC<Props> = (props) => {
   };
 
   useEffect(() => {
-    console.log("check");
     const score = localStorage.getItem("score");
     const player = localStorage.getItem("player");
 
