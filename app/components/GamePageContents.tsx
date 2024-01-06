@@ -31,7 +31,6 @@ const GamePageComponents: FC<Props> = (props) => {
     changeContentId,
     clearPlayerList,
   } = props;
-  console.log(sortedPlayerList);
 
   const headerMenu = useHeaderMenu();
   const finishDialog = useDialog();

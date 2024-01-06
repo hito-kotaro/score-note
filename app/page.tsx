@@ -25,6 +25,7 @@ const Page = () => {
     clearPlayerList,
     saveScore,
     resetScore,
+    continueData,
   } = usePlayer();
 
   return (
@@ -39,6 +40,8 @@ const Page = () => {
               onChangePlayerName={onChangePlayerName}
               addPlayer={addPlayer}
               removePlayer={removePlayer}
+              continueData={continueData}
+              clearPlayerList={clearPlayerList}
             />
           ) : (
             ""

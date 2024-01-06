@@ -214,6 +214,19 @@ export const usePlayer = () => {
     );
   };
 
+  const continueData = () => {
+    const scoreJson = localStorage.getItem("score");
+    const playerJson = localStorage.getItem("player");
+
+    if (scoreJson !== null && playerJson !== null) {
+      const score: Player[][] = JSON.parse(scoreJson);
+      const player: Player[] = JSON.parse(playerJson);
+      setScoreList(score);
+      setPlayerList(player);
+      setSortedPlayerList(player.sort((a, b) => a.name.localeCompare(b.name)));
+    }
+  };
+
   return {
     playerList,
     sortedPlayerList,
@@ -229,5 +242,6 @@ export const usePlayer = () => {
     substructScore,
     saveScore,
     resetScore,
+    continueData,
   };
 };

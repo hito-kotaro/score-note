@@ -1,8 +1,11 @@
 import Add from "@mui/icons-material/Add";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, Snackbar, TextField, Typography } from "@mui/material";
 import { JoinPlayerListItem } from "./organizations/home/JoinPlayerListItem/JoinPlayerListItem";
 import { Player } from "../types/player";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
+import { useSnackbar } from "./hooks/useSnackbar";
+import { useDialog } from "./hooks/useDialog";
+import { ContinueDialog } from "./molcules/ContinueDialog/ContinueDialog";
 
 interface Props {
   playerList: Player[];
@@ -11,6 +14,8 @@ interface Props {
   onChangePlayerName: (e: React.ChangeEvent<HTMLInputElement>) => void;
   addPlayer: (name: string) => void;
   removePlayer: (id: string) => void;
+  continueData: () => void;
+  clearPlayerList: () => void;
 }
 
 const HomePageContents: FC<Props> = (props) => {
@@ -21,7 +26,12 @@ const HomePageContents: FC<Props> = (props) => {
     onChangePlayerName,
     addPlayer,
     removePlayer,
+    continueData,
+    clearPlayerList,
   } = props;
+  const [isContinue, setIsContinue] = useState<boolean>(true);
+  const snackbar = useSnackbar();
+  const continueDialog = useDialog();
 
   const gameStart = () => {
     changeContentId(1);
@@ -30,12 +40,32 @@ const HomePageContents: FC<Props> = (props) => {
     localStorage.setItem("player", JSON.stringify(playerList));
   };
 
+  useEffect(() => {
+    console.log("check");
+    const score = localStorage.getItem("score");
+    const player = localStorage.getItem("player");
+
+    if (score !== null && player !== null) {
+      continueDialog.handleOpen();
+    }
+  }, []);
+
   return (
     <Box className="px-2">
       {/*Header*/}
       <Typography variant="h3" className="text-primary text-center">
         ScoreNote
       </Typography>
+
+      {/*Dialog*/}
+      <ContinueDialog
+        isOpen={continueDialog.isOpen}
+        handleClose={continueDialog.handleClose}
+        snackbarHandleOpen={snackbar.handleOpen}
+        changeContentId={changeContentId}
+        clearPlayerList={clearPlayerList}
+        continueData={continueData}
+      />
 
       {/*Display*/}
       <Box className="mt-6">
